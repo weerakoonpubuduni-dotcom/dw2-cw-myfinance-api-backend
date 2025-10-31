@@ -1,5 +1,22 @@
 package com.financeapp.personal_finance_manager.service;
 
+import com.financeapp.personal_finance_manager.entity.SavingsContribution;
+import com.financeapp.personal_finance_manager.entity.SavingsContributionRepository;
+import com.financeapp.personal_finance_manager.entity.SavingsGoal;
+import com.financeapp.personal_finance_manager.entity.SavingsGoalRepository;
+import com.financeapp.personal_finance_manager.model.ContributionRequest;
+import com.financeapp.personal_finance_manager.model.SavingsGoalRequest;
+import com.financeapp.personal_finance_manager.model.SavingsGoalResponse;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class SavingsService {
 

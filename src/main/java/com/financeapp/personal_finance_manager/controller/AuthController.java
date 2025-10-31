@@ -1,5 +1,15 @@
 package com.financeapp.personal_finance_manager.controller;
 
+import com.financeapp.personal_finance_manager.model.JwtResponse;
+import com.financeapp.personal_finance_manager.model.LoginRequest;
+import com.financeapp.personal_finance_manager.model.MessageResponse;
+import com.financeapp.personal_finance_manager.model.RegisterRequest;
+import com.financeapp.personal_finance_manager.service.AuthService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin(origins = "*", maxAge = 3600)

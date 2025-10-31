@@ -1,5 +1,19 @@
 package com.financeapp.personal_finance_manager.service;
 
+import com.financeapp.personal_finance_manager.entity.Budget;
+import com.financeapp.personal_finance_manager.entity.BudgetRepository;
+import com.financeapp.personal_finance_manager.entity.CategoryRepository;
+import com.financeapp.personal_finance_manager.entity.ExpenseRepository;
+import com.financeapp.personal_finance_manager.model.BudgetRequest;
+import com.financeapp.personal_finance_manager.model.BudgetResponse;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class BudgetService {
 

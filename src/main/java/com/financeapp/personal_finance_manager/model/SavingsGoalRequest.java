@@ -1,5 +1,11 @@
 package com.financeapp.personal_finance_manager.model;
 
+import jakarta.validation.constraints.*;
+import lombok.Data;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 @Data
 public class SavingsGoalRequest {
     @NotBlank(message = "Goal name is required")

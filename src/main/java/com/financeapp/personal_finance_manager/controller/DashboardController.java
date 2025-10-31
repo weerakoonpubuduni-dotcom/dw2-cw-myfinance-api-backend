@@ -1,5 +1,17 @@
 package com.financeapp.personal_finance_manager.controller;
 
+import com.financeapp.personal_finance_manager.entity.*;
+import com.financeapp.personal_finance_manager.model.CategoryExpenseSummary;
+import com.financeapp.personal_finance_manager.model.DashboardResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/dashboard")
 @CrossOrigin(origins = "*", maxAge = 3600)

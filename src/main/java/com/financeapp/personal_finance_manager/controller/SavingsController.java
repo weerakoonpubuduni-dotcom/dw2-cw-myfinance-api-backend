@@ -1,5 +1,17 @@
 package com.financeapp.personal_finance_manager.controller;
 
+import com.financeapp.personal_finance_manager.model.ContributionRequest;
+import com.financeapp.personal_finance_manager.model.MessageResponse;
+import com.financeapp.personal_finance_manager.model.SavingsGoalRequest;
+import com.financeapp.personal_finance_manager.model.SavingsGoalResponse;
+import com.financeapp.personal_finance_manager.service.SavingsService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/savings")
 @CrossOrigin(origins = "*", maxAge = 3600)

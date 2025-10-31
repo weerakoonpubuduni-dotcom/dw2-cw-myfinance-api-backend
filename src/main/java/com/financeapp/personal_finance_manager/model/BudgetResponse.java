@@ -1,5 +1,14 @@
 package com.financeapp.personal_finance_manager.model;
 
+import com.financeapp.personal_finance_manager.entity.Budget;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 @Data
 @Builder
 @NoArgsConstructor

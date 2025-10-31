@@ -1,5 +1,8 @@
 package com.financeapp.personal_finance_manager.model;
 
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+
 @Data
 public class LoginRequest {
     @NotBlank(message = "Username is required")

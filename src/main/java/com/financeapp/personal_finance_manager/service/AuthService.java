@@ -1,5 +1,26 @@
 package com.financeapp.personal_finance_manager.service;
 
+import com.financeapp.personal_finance_manager.entity.Category;
+import com.financeapp.personal_finance_manager.entity.CategoryRepository;
+import com.financeapp.personal_finance_manager.entity.User;
+import com.financeapp.personal_finance_manager.entity.UserRepository;
+import com.financeapp.personal_finance_manager.model.JwtResponse;
+import com.financeapp.personal_finance_manager.model.LoginRequest;
+import com.financeapp.personal_finance_manager.model.MessageResponse;
+import com.financeapp.personal_finance_manager.model.RegisterRequest;
+import com.financeapp.personal_finance_manager.security.JwtUtils;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class AuthService {
 

@@ -1,5 +1,18 @@
 package com.financeapp.personal_finance_manager.service;
 
+import com.financeapp.personal_finance_manager.entity.CategoryRepository;
+import com.financeapp.personal_finance_manager.entity.Expense;
+import com.financeapp.personal_finance_manager.entity.ExpenseRepository;
+import com.financeapp.personal_finance_manager.model.ExpenseRequest;
+import com.financeapp.personal_finance_manager.model.ExpenseResponse;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ExpenseService {
 

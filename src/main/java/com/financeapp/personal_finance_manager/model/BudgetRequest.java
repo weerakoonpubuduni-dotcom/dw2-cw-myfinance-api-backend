@@ -1,5 +1,13 @@
 package com.financeapp.personal_finance_manager.model;
 
+import com.financeapp.personal_finance_manager.entity.Budget;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import lombok.Data;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 @Data
 public class BudgetRequest {
     @NotNull(message = "Category ID is required")
