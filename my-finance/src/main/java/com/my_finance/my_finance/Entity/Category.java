@@ -17,13 +17,14 @@ import java.time.LocalDateTime;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="category_id")
     private Integer categoryId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(nullable = false, length = 50)
+    @Column(name= "category_name",nullable = false, length = 50)
     private String categoryName;
 
     @Column(nullable = false, length = 20)
