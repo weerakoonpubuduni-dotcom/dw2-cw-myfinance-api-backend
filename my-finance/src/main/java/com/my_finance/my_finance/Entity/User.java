@@ -7,23 +7,28 @@ import java.time.LocalDateTime;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="userId")
+    @Column(name="user_id")
     private Integer userId;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(name = "username",nullable = false, unique = true, length = 50)
     private String username;
 
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(name="email",nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name="password_hash",nullable = false)
     private String passwordHash;
 
-    @Column(nullable = false, length = 100)
+    @Column(name ="full_name", nullable=false, length = 100)
     private String fullName;
 
+    @Column(name="created_at",nullable = false, unique = true, length = 100)
     private LocalDateTime createdAt;
+
+    @Column(name="updated_at",nullable = false, unique = true, length = 100)
     private LocalDateTime updatedAt;
+
+    @Column(name="last_sync",nullable = false, unique = true, length = 100)
     private LocalDateTime lastSync;
 
     // Getters & Setters
