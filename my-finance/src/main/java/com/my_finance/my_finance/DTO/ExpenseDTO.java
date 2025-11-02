@@ -1,5 +1,6 @@
 package com.my_finance.my_finance.DTO;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ExpenseDTO {
 
@@ -10,6 +11,11 @@ public class ExpenseDTO {
     private LocalDate expenseDate;
     private String description;
     private String paymentMethod;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private LocalDateTime syncTimestamp;
+    private Integer isSynced;
+
 
     // Getters & Setters
     public Integer getExpenseId() { return expenseId; }
@@ -32,4 +38,20 @@ public class ExpenseDTO {
 
     public String getPaymentMethod() { return paymentMethod; }
     public void setPaymentMethod(String paymentMethod) { this.paymentMethod = paymentMethod; }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public void setSyncTimestamp(LocalDateTime syncTimestamp) {
+        this.syncTimestamp = syncTimestamp;
+    }
+
+    public void setIsSynced(Integer isSynced) {
+        this.isSynced = isSynced;
+    }
 }

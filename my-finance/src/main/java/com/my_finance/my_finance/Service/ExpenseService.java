@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,7 @@ public class ExpenseService {
 
 
 
-    // ✅ Create Expense and Deduct from Budget
+    //  Create Expense and Deduct from Budget
     public ExpenseDTO createExpense(ExpenseDTO dto) {
         User user = userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -42,6 +43,9 @@ public class ExpenseService {
         expense.setExpenseDate(dto.getExpenseDate());
         expense.setDescription(dto.getDescription());
         expense.setPaymentMethod(dto.getPaymentMethod());
+        expense.setCreatedAt(LocalDateTime.now());
+        expense.setUpdatedAt(LocalDateTime.now());
+        expense.setSyncTimestamp(LocalDateTime.now());
         expense.setIsSynced(0);
 
         // Save the expense
@@ -53,7 +57,7 @@ public class ExpenseService {
         return convertToDTO(savedExpense);
     }
 
-    // ✅ Get all expenses by user
+    // Get all expenses by user
     public List<ExpenseDTO> getAllExpensesByUser(Integer userId) {
         return expenseRepository.findByUserUserId(userId)
                 .stream()
@@ -61,7 +65,7 @@ public class ExpenseService {
                 .collect(Collectors.toList());
     }
 
-    // ✅ Update Expense
+    //  Update Expense
     public ExpenseDTO updateExpense(Integer id, ExpenseDTO dto) {
         Expense expense = expenseRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Expense not found"));
@@ -75,12 +79,12 @@ public class ExpenseService {
         return convertToDTO(updated);
     }
 
-    // ✅ Delete Expense
+    // Delete Expense
     public void deleteExpense(Integer id) {
         expenseRepository.deleteById(id);
     }
 
-    // ✅ Deduct from Budget
+    // Deduct from Budget
     private void deductFromBudget(Integer userId, Integer categoryId, BigDecimal amount, LocalDate expenseDate) {
         Budget budget = (Budget) budgetRepository
                 .findByUserUserIdAndCategoryCategoryIdAndStartDate(userId, categoryId, expenseDate.withDayOfMonth(1))
@@ -93,7 +97,7 @@ public class ExpenseService {
         }
     }
 
-    // ✅ Convert Entity → DTO
+    // Convert Entity → DTO
     private ExpenseDTO convertToDTO(Expense expense) {
         ExpenseDTO dto = new ExpenseDTO();
         dto.setExpenseId(expense.getExpenseId());
@@ -103,6 +107,12 @@ public class ExpenseService {
         dto.setExpenseDate(expense.getExpenseDate());
         dto.setDescription(expense.getDescription());
         dto.setPaymentMethod(expense.getPaymentMethod());
+        dto.setCreatedAt(expense.getCreatedAt());
+        dto.setUpdatedAt(expense.getUpdatedAt());
+        dto.setSyncTimestamp(expense.getSyncTimestamp());
+        dto.setIsSynced(expense.getIsSynced());
+
+
         return dto;
     }
 }
