@@ -9,5 +9,5 @@ import java.util.Optional;
 
 public interface ExpenseRepository extends JpaRepository<Expense,Integer> {
     List<Expense> findByUserUserId(Integer userId);// Find all expenses that belong to the user with the given userId
-    Optional<Expense> findByUserUserIdAndCategoryCategoryIdAndStartDate(Integer userId, Integer categoryId, LocalDate startDate);
+    Optional<Expense> findByUserUserIdAndCategoryCategoryIdAndExpenseDate(Integer userId, Integer categoryId, LocalDate expenseDate);
 }
