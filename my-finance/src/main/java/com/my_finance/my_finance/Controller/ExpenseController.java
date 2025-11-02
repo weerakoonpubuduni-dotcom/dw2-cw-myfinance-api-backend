@@ -17,21 +17,21 @@ import java.util.List;
 public class ExpenseController {
     @Autowired private ExpenseService expenseService;
 
-    // ✅ Create a new expense
+    // Create a new expense
     @PostMapping
     public ResponseEntity<ExpenseDTO> createExpense(@RequestBody ExpenseDTO expenseDTO) {
         ExpenseDTO createdExpense = expenseService.createExpense(expenseDTO);
         return ResponseEntity.ok(createdExpense);
     }
 
-    // ✅ Get all expenses by user ID
+    // Get all expenses by user ID
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<ExpenseDTO>> getExpensesByUser(@PathVariable Integer userId) {
         List<ExpenseDTO> expenses = expenseService.getAllExpensesByUser(userId);
         return ResponseEntity.ok(expenses);
     }
 
-    // ✅ Update an existing expense
+    // Update an existing expense
     @PutMapping("/{id}")
     public ResponseEntity<ExpenseDTO> updateExpense(
             @PathVariable Integer id,
@@ -41,7 +41,7 @@ public class ExpenseController {
         return ResponseEntity.ok(updatedExpense);
     }
 
-    // ✅ Delete an expense
+    // Delete an expense
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteExpense(@PathVariable Integer id) {
         expenseService.deleteExpense(id);

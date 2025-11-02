@@ -8,6 +8,7 @@ import com.my_finance.my_finance.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +36,7 @@ public class CategoryService {
         category.setCategoryName(dto.getCategoryName());
         category.setCategoryType(dto.getCategoryType());
         category.setDescription(dto.getDescription());
+        category.setCreatedAt(LocalDateTime.now());
         category.setIsSynced(0);
 
         Category saved = categoryRepository.save(category);
@@ -52,6 +54,8 @@ public class CategoryService {
         dto.setCategoryName(category.getCategoryName());
         dto.setCategoryType(category.getCategoryType());
         dto.setDescription(category.getDescription());
+        dto.setCreatedAt(category.getCreatedAt());   // map createdAt
+        dto.setIsSynced(category.getIsSynced());     //  map isSynced
         return dto;
     }
 }
