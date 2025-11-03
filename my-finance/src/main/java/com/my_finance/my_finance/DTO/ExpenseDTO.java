@@ -11,10 +11,10 @@ public class ExpenseDTO {
     private LocalDate expenseDate;
     private String description;
     private String paymentMethod;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private LocalDateTime syncTimestamp;
-    private Integer isSynced;
+    public LocalDateTime createdAt;
+    public LocalDateTime updatedAt;
+    public LocalDateTime syncTimestamp;
+    public Integer isSynced;
 
 
     // Getters & Setters

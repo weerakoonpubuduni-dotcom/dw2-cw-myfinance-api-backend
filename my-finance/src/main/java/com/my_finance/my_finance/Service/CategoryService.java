@@ -43,6 +43,22 @@ public class CategoryService {
         return convertToDTO(saved);
     }
 
+    public CategoryDTO updateCategory(Integer categoryId, CategoryDTO dto) {
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        // Update only the fields that can be changed
+        category.setCategoryName(dto.getCategoryName());
+        category.setCategoryType(dto.getCategoryType());
+        category.setDescription(dto.getDescription());
+        category.setIsSynced(0);
+        category.setCreatedAt(LocalDateTime.now());
+
+        Category updated = categoryRepository.save(category);
+        return convertToDTO(updated);
+    }
+
+
     public void deleteCategory(Integer id) {
         categoryRepository.deleteById(id);
     }

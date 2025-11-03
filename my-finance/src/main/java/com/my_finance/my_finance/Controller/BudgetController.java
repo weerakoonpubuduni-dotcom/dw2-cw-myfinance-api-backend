@@ -15,7 +15,9 @@ import java.util.List;
 public class BudgetController {
     @Autowired  private BudgetService budgetService;
 
-    @GetMapping("/user/{userId}")
+
+
+    @GetMapping("/{userId}")
     public List<BudgetDTO> getBudgetsByUser(@PathVariable Integer userId) {
         return budgetService.getBudgetsByUser(userId);
     }

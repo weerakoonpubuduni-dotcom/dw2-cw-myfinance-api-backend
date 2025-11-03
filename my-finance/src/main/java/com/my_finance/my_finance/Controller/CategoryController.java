@@ -15,7 +15,7 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping ("/{userId}")
+    @GetMapping ("/users/{userId}")
     public List<CategoryDTO> getAllCategoriesByUser(@PathVariable Integer userId) {
         return categoryService.getAllCategoriesByUser(userId);
     }
@@ -23,6 +23,12 @@ public class CategoryController {
     @PostMapping
     public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryDTO dto) {
         return ResponseEntity.ok(categoryService.createCategory(dto));
+    }
+
+    @PutMapping("/{categoryId}")
+    public ResponseEntity<CategoryDTO> updateCategory(@PathVariable Integer categoryId, @RequestBody CategoryDTO updatedCategory) {
+        CategoryDTO updated = categoryService.updateCategory(categoryId, updatedCategory);
+        return ResponseEntity.ok(updated);
     }
     @DeleteMapping("/{categoryId}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Integer categoryId) {

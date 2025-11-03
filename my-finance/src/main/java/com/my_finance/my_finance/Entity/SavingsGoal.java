@@ -21,7 +21,7 @@ public class SavingsGoal {
     private Integer goalId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name="goal_name")
