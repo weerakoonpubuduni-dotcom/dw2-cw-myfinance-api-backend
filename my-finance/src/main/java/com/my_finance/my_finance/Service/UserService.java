@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
 @Service
 public class UserService {
     @Autowired
@@ -38,6 +40,16 @@ public class UserService {
 
     public void deleteUser(Integer userId) {
         userRepository.deleteById(userId);
+    }
+
+    public UserDTO loginUser(String username, String email, String passwordHash) {
+        Optional<User> userOptional = userRepository.findByUsernameAndEmailAndPasswordHash(username, email, passwordHash);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return convertToDTO(user);
+        } else {
+            return null; // login failed
+        }
     }
 
     private UserDTO convertToDTO(User user) {

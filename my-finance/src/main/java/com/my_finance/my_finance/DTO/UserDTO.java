@@ -54,4 +54,8 @@ public class UserDTO {
     public LocalDateTime getLastSync() {
         return lastSync;
     }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
 }

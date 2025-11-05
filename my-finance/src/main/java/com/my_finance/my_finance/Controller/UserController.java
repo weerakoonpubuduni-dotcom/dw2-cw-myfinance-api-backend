@@ -4,6 +4,7 @@ import com.my_finance.my_finance.DTO.UserDTO;
 import com.my_finance.my_finance.Entity.User;
 import com.my_finance.my_finance.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/users")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
     @Autowired
     UserService userService;
@@ -43,4 +45,19 @@ public class UserController {
         return ResponseEntity.noContent().build();
 
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody UserDTO loginRequest) {
+        UserDTO loggedInUser = userService.loginUser(
+                loginRequest.getUsername(),
+                loginRequest.getEmail(),
+                loginRequest.getPasswordHash()
+        );
+        if (loggedInUser != null) {
+            return ResponseEntity.ok(loggedInUser);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        }
+    }
+
 }
