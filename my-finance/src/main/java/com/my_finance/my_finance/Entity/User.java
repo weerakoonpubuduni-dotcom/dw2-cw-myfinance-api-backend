@@ -1,5 +1,8 @@
 package com.my_finance.my_finance.Entity;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,13 +25,15 @@ public class User {
     @Column(name ="full_name", nullable=false, length = 100)
     private String fullName;
 
-    @Column(name="created_at",nullable = false, unique = true, length = 100)
+    @CreationTimestamp
+    @Column(name="created_at", updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name="updated_at",nullable = false, unique = true, length = 100)
+    @UpdateTimestamp
+    @Column(name="updated_at")
     private LocalDateTime updatedAt;
 
-    @Column(name="last_sync",nullable = false, unique = true, length = 100)
+    @Column(name="last_sync")
     private LocalDateTime lastSync;
 
     // Getters & Setters
