@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping ("/api/categories")
-//@CrossOrigin --- Front end link
+@CrossOrigin(origins = "http://localhost:3000")
 public class CategoryController {
     @Autowired
     CategoryService categoryService;

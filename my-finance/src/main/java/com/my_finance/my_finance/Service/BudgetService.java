@@ -10,6 +10,7 @@ import com.my_finance.my_finance.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,15 +57,22 @@ public class BudgetService {
         return dto;
     }
 
-    public Budget updateBudget(Integer id, Budget updatedBudget) {
-        Budget budget = budgetRepository.findById(id).orElseThrow(() -> new RuntimeException("Budget not found"));
-        budget.setBudgetAmount(updatedBudget.getBudgetAmount());
-        budget.setBudgetPeriod(updatedBudget.getBudgetPeriod());
-        budget.setStartDate(updatedBudget.getStartDate());
-        budget.setEndDate(updatedBudget.getEndDate());
-        budget.setAlertThreshold(updatedBudget.getAlertThreshold());
-        return budgetRepository.save(budget);
+    public BudgetDTO updateBudget(Integer id, BudgetDTO dto) {
+        Budget budget = budgetRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Budget not found"));
+
+        // Keep existing user and category
+        budget.setBudgetAmount(dto.getBudgetAmount());
+        budget.setBudgetPeriod(dto.getBudgetPeriod());
+        budget.setStartDate(dto.getStartDate());
+        budget.setEndDate(dto.getEndDate());
+        budget.setAlertThreshold(dto.getAlertThreshold());
+        budget.setUpdatedAt(LocalDateTime.now());
+
+        Budget saved = budgetRepository.save(budget);
+        return convertToDTO(saved);
     }
+
 
     public void deleteBudget(Integer id) {
         budgetRepository.deleteById(id);

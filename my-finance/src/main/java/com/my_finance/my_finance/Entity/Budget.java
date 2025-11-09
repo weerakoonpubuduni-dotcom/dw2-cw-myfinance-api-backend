@@ -37,7 +37,7 @@ public class Budget {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @Column(name = "alert_threshold")
+    @Column(name = "alert_threshold", precision = 10, scale = 2)
     private BigDecimal alertThreshold;
 
     @Column(name = "created_at")
@@ -48,6 +48,19 @@ public class Budget {
 
     @Column(name = "is_synced")
     private Integer isSynced;
+
+    // Automatically set before insert
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    // Automatically set before update
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 
     // Getters & Setters
     public Integer getBudgetId() { return budgetId; }

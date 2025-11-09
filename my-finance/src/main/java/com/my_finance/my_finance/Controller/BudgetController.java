@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/budgets")
-//@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class BudgetController {
     @Autowired  private BudgetService budgetService;
 
@@ -29,9 +29,11 @@ public class BudgetController {
 
     // Update existing budget
     @PutMapping("/{budgetId}")
-    public Budget updateBudget(@PathVariable Integer budgetId, @RequestBody Budget updatedBudget) {
-        return budgetService.updateBudget(budgetId, updatedBudget);
+    public ResponseEntity<BudgetDTO> updateBudget(@PathVariable Integer budgetId, @RequestBody BudgetDTO dto) {
+        BudgetDTO updated = budgetService.updateBudget(budgetId, dto);
+        return ResponseEntity.ok(updated);
     }
+
 
     // Delete a budget
     @DeleteMapping("/{budgetId}")
@@ -39,7 +41,4 @@ public class BudgetController {
         budgetService.deleteBudget(budgetId);
         return "Budget with ID " + budgetId + " has been deleted successfully.";
     }
-
-
-
 }
